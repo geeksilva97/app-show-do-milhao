@@ -9,6 +9,17 @@
 <ion-content>
   <div class="ion-padding">
     The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    <ion-button (click)="play()">Play</ion-button>
+
+
+    <ion-button (click)="mil()">Pergunta de MIL reais</ion-button>
+    <ion-button (click)="doisMil()">Pergunta de 2 MIL reais</ion-button>
+    <ion-button (click)="tresMil()">Pergunta de 3 MIL reais</ion-button>
+
+
+    <p *ngFor="let log of logs">
+      {{log}}
+    </p>
+
   </div>
 </ion-content>
