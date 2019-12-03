@@ -1,12 +1,64 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>
       Ionic Blank
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content class="content-page">
+  <div class="question-box">
+    <div class="question">
+      <p>Em que ano nasceu o apresentador Sílvio Santos, atualmente no SBT?</p>
+      <div>
+        <div class="time">{{ questionTime }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="answers">
+    <div *ngFor="let answer of asnwers; let i = index;">
+      <span class="number">{{ i+1 }}</span>
+      <span class="answer">{{ answer.desc }}</span>
+    </div>
+
+    <!-- <div>
+      <span class="number">2</span>
+      <span class="answer">Answer Description</span>
+    </div>
+
+    <div>
+      <span class="number">3</span>
+      <span class="answer">Answer Description</span>
+    </div>
+
+    <div>
+      <span class="number">4</span>
+      <span class="answer">Answer Description</span>
+    </div> -->
+  </div>
+
+  <div class="info">
+    <div>
+      <p>ERRAR</p>
+      <p>PERDE TUDO</p>
+    </div>
+    <div>
+      <p>PARAR</p>
+      <p>R$ 500 MIL</p>
+    </div>
+    <div>
+      <p>ACERTAR</p>
+      <p>R$ 1 MILHÃO</p>
+    </div>
+  </div>
+
+
+  <div class="stop-container"></div>
+</ion-content>
+
+
+<!-- <ion-content>
   <div class="ion-padding">
     The world is your oyster.
     <ion-button (click)="play()">Play</ion-button>
@@ -22,4 +74,4 @@
     </p>
 
   </div>
-</ion-content>
+</ion-content> -->

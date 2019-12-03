@@ -11,6 +11,14 @@ export class HomePage implements OnInit {
   loaded: boolean = false;
   logs: string[] = [];
 
+  questionTime: number = 30;
+  asnwers: {desc: string, right: boolean}[] = [
+    {desc: '9 de Dezembro de 1933', right: false},
+    {desc: '10 de Dezembro de 1932', right: false},
+    {desc: '11 de Dezembro de 1931', right: false},
+    {desc: '12 de Dezembro de 1930', right: true},
+  ];
+
 
   perguntasDinheiro = {
     '1000': [
@@ -38,6 +46,28 @@ export class HomePage implements OnInit {
   constructor(
     private nativeAudio: NativeAudio
   ) {}
+
+
+  answerQuestion(answer) {
+    // posso perguntar?
+    this.nativeAudio.play('possoPerguntar', () => {
+      if(answer.right) {
+        this.nativeAudio.play('certaResposta', () => {
+          console.log('proxima pergunta')
+        });
+      }else {
+        this.nativeAudio.play('voceErrou', () => {
+          console.log('proxima pergunta')
+        });
+      }
+      // setTimeout(() => {
+      //   this.nativeAudio.play('certaResposta', () => {
+      //     alert('Audio executado');
+      //   });
+      // }, 1500)
+     
+    });
+  }
 
 
   rand(max: number) {
@@ -71,6 +101,11 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
 
+    let interval = setInterval(() => {
+      if(this.questionTime === 0) return clearInterval(interval);
+      this.questionTime--;
+    }, 1000)
+
     Object.keys(this.perguntasDinheiro).forEach(key => {
       this.perguntasDinheiro[key].forEach(async (audioName) => {
         await this.nativeAudio.preloadSimple(audioName, `assets/audios/perguntas/${audioName}.wav`);
@@ -95,6 +130,16 @@ export class HomePage implements OnInit {
       }) ;
 
       this.nativeAudio.preloadSimple('possoPerguntar', 'assets/posso-perguntar.wav')
+      .then((v) => {
+        console.log(v);
+        this.loaded = true;
+      }).catch(err => {
+        alert('Falha ao carregar o audio');
+        console.log(err);
+      }) ;
+
+
+      this.nativeAudio.preloadSimple('voceErrou', 'assets/que-pena.wav')
       .then((v) => {
         console.log(v);
         this.loaded = true;
