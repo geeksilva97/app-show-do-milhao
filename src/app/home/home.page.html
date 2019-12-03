@@ -17,7 +17,8 @@
   </div>
 
   <div class="answers">
-    <div *ngFor="let answer of asnwers; let i = index;">
+    <div (click)="answerQuestion(answer)" *ngFor="let answer of asnwers; let i = index;">
+      <!-- <ion-ripple-effect></ion-ripple-effect> -->
       <span class="number">{{ i+1 }}</span>
       <span class="answer">{{ answer.desc }}</span>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,8 @@ export class HomePage implements OnInit {
   };
 
   constructor(
-    private nativeAudio: NativeAudio
+    private nativeAudio: NativeAudio,
+    private alertCtrl: AlertController
   ) {}
 
 
@@ -101,16 +103,26 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
 
-    let interval = setInterval(() => {
-      if(this.questionTime === 0) return clearInterval(interval);
-      this.questionTime--;
-    }, 1000)
+    let interval = setInterval(async () => {
+      if(this.questionTime === 0) {
 
-    Object.keys(this.perguntasDinheiro).forEach(key => {
-      this.perguntasDinheiro[key].forEach(async (audioName) => {
-        await this.nativeAudio.preloadSimple(audioName, `assets/audios/perguntas/${audioName}.wav`);
-      });
-    });
+        let alertC = await this.alertCtrl.create({
+          header: 'Seu tempo acabou',
+          message: 'Demorou demais :/',
+          buttons: [
+            {text: 'OK', role: 'ok'}
+          ]
+        });
+
+        alertC.present();
+
+        this.nativeAudio.play('tempoEsgotado', () => {
+        });
+        return clearInterval(interval);
+      }
+      this.questionTime--;
+    }, 1000);
+
 
     this.nativeAudio.preloadComplex('backAudio', 'assets/suspense.wav', .2, 1, 0)
       .then(() => {
@@ -125,7 +137,7 @@ export class HomePage implements OnInit {
         console.log(v);
         this.loaded = true;
       }).catch(err => {
-        alert('Falha ao carregar o audio');
+        alert('Falha ao carregar o audio certaResposta');
         console.log(err);
       }) ;
 
@@ -134,17 +146,26 @@ export class HomePage implements OnInit {
         console.log(v);
         this.loaded = true;
       }).catch(err => {
-        alert('Falha ao carregar o audio');
+        alert('Falha ao carregar o audio possoPerguntar');
         console.log(err);
-      }) ;
+      });
 
 
-      this.nativeAudio.preloadSimple('voceErrou', 'assets/que-pena.wav')
+      this.nativeAudio.preloadSimple('voceErrou', 'assets/audios/que-pena.wav')
       .then((v) => {
         console.log(v);
         this.loaded = true;
       }).catch(err => {
-        alert('Falha ao carregar o audio');
+        alert('Falha ao carregar o audio voceErrou');
+        console.log(err);
+      }) ;
+
+      this.nativeAudio.preloadSimple('tempoEsgotado', 'assets/audios/ah-nao-da-mais-nao-tempo-acabou.wav')
+      .then((v) => {
+        console.log(v);
+        this.loaded = true;
+      }).catch(err => {
+        alert('Falha ao carregar o audio tempoEsgotado');
         console.log(err);
       }) ;
   }
