@@ -1,4 +1,4 @@
-# Vai começar o show do milhão
+# Vai começar o show do milhão :moneybag: :moneybag:
 Esse repositório possui o códido da aplicação a ser desenvolvida em série no YouTube (https://youtube.com/edigleyssonsilva). Esse app é um quiz de perguntas que tenta simular o jogo do show do milhão.
 
 O desenvolvimento seguirá as seguintes estapas
