@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>question</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+<ion-content class="content-page">
+  <div class="question-box">
+    <div class="question">
+      <p>{{ question.text }}</p>
+      <div>
+        <div class="time">{{ timer }}</div>
+      </div>
+    </div>
+  </div>
 
+  <div class="answers">
+    <div class="ion-activatable ion-focusable hydrated" (click)="answerQuestion(answer)" *ngFor="let answer of question.answers; let i = index;">
+      <span class="number">{{ i+1 }}</span>
+      <span class="answer">{{ answer.text }}</span>
+    </div>
+
+  </div>
+
+  <div class="info">
+    <div class="yellow-button">
+      <p>ERRAR</p>
+      <p *ngIf="metadata.currentQuestion < 15">{{ metadata.amount/2 }}</p>
+      <p *ngIf="metadata.currentQuestion == 15">PERDE TUDO</p>
+    </div>
+    <div class="yellow-button">
+      <p>PARAR</p>
+      <p>{{ metadata.amount }}</p>
+    </div>
+    <div class="yellow-button">
+      <p>ACERTAR</p>
+      <p>{{ metadata.questionPrize }}</p>
+    </div>
+  </div>
+
+
+  <div class="stop-container"></div>
 </ion-content>

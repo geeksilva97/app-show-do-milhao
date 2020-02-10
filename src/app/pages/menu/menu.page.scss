@@ -5,3 +5,31 @@
         justify-content: center;
         align-items: center;
     }
+    $box-color: #ef6f6a;
+    $box-color-secondary: #ec4743;
+    $background: #01406b;
+    $background-secondary: #022c5e;
+    
+    ion-content{
+        --background: linear-gradient(#01406b, #022c5e);
+    }
+
+    .content-page {
+        background-image: linear-gradient(#01406b, #022c5e);
+    }
+    
+
+    // .vertical-center {
+    //     .fixed-content,
+    //     .scroll-content {
+    //         display: flex;
+    //         align-items: center;
+    
+    //         ion-list {
+    //             max-width: 300px; 
+    //             width:100%; 
+    //             margin: auto; 
+    //             text-align: center;
+    //         }
+    //     }
+    // }
