@@ -2,36 +2,50 @@
 <ion-content class="content-page">
   <div class="question-box">
     <div class="question">
-      <p>{{ question.text }}</p>
+      <p>Qual dos números abaixo é um múltipo de 3?</p>
       <div>
-        <div class="time">{{ timer }}</div>
+        <div class="time">30</div>
       </div>
     </div>
   </div>
 
   <div class="answers">
-    <div class="ion-activatable ion-focusable hydrated" (click)="answerQuestion(answer)" *ngFor="let answer of question.answers; let i = index;">
-      <span class="number">{{ i+1 }}</span>
-      <span class="answer">{{ answer.text }}</span>
+    <div class="ion-activatable ion-focusable hydrated">
+      <span class="number">1</span>
+      <span class="answer">18</span>
     </div>
+
+    <div class="ion-activatable ion-focusable hydrated">
+      <span class="number">2</span>
+      <span class="answer">25</span>
+    </div>
+
+    <div class="ion-activatable ion-focusable hydrated">
+      <span class="number">3</span>
+      <span class="answer">19</span>
+    </div>
+
+    <div class="ion-activatable ion-focusable hydrated">
+      <span class="number">4</span>
+      <span class="answer">43</span>
+    </div>
+
+
   </div>
 
   <div class="info">
     <div class="yellow-button">
       <p>ERRAR</p>
-      <p *ngIf="metadata.currentQuestion < 15">{{ metadata.amount/2 }}</p>
-      <p *ngIf="metadata.currentQuestion == 15">PERDE TUDO</p>
+      <p>50</p>
     </div>
     <div class="yellow-button">
       <p>PARAR</p>
-      <p>{{ metadata.amount }}</p>
+      <p>100</p>
     </div>
     <div class="yellow-button">
       <p>ACERTAR</p>
-      <p>{{ metadata.questionPrize }}</p>
+      <p>200</p>
     </div>
   </div>
 
-
-  <!-- <div class="stop-container"></div> -->
 </ion-content>
