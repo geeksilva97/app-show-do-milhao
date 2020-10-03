@@ -2,7 +2,7 @@
 <ion-content class="content-page">
   <div class="question-box">
     <div class="question">
-      <p>Qual dos números abaixo é um múltipo de 3?</p>
+      <p>{{ curQuesion.title }}</p>
       <div>
         <div class="time">30</div>
       </div>
@@ -10,27 +10,10 @@
   </div>
 
   <div class="answers">
-    <div class="ion-activatable ion-focusable hydrated">
-      <span class="number">1</span>
-      <span class="answer">18</span>
+    <div (click)="doAnswer(answer)" *ngFor="let answer of curQuesion.answers; let n = index;" class="ion-activatable ion-focusable hydrated">
+      <span class="number">{{ n + 1 }}</span>
+      <span class="answer">{{ answer.description }}</span>
     </div>
-
-    <div class="ion-activatable ion-focusable hydrated">
-      <span class="number">2</span>
-      <span class="answer">25</span>
-    </div>
-
-    <div class="ion-activatable ion-focusable hydrated">
-      <span class="number">3</span>
-      <span class="answer">19</span>
-    </div>
-
-    <div class="ion-activatable ion-focusable hydrated">
-      <span class="number">4</span>
-      <span class="answer">43</span>
-    </div>
-
-
   </div>
 
   <div class="info">
