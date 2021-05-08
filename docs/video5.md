@@ -1,10 +1,10 @@
 # Video 5 - Lógica de premio dinamica e suffle de perguntas
 
-- [] Criar service para questions
-- [] Adicionar questões
-- [] Criar método para carregar a próxima pergunta
-- [] Criar método para clálculo dos valores (assim passando toda a lógica para a service)
-- [] Atualizar template para pegar informações dinamicamente
+- [ ] Criar service para questions
+- [ ] Adicionar questões
+- [ ] Criar método para carregar a próxima pergunta
+- [ ] Criar método para clálculo dos valores (assim passando toda a lógica para a service)
+- [ ] Atualizar template para pegar informações dinamicamente
 
 
 
