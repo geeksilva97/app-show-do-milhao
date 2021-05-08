@@ -16,18 +16,18 @@
     </div>
   </div>
 
-  <div class="info">
+  <div class="info" *ngIf="prizeInfo">
     <div class="yellow-button">
       <p>ERRAR</p>
-      <p>50</p>
+      <p>{{ prizeInfo.wrongAnswer }}</p>
     </div>
     <div class="yellow-button">
       <p>PARAR</p>
-      <p>100</p>
+      <p>{{ prizeInfo.quit }}</p>
     </div>
     <div class="yellow-button">
       <p>ACERTAR</p>
-      <p>200</p>
+      <p>{{ prizeInfo.correctAnswer }}</p>
     </div>
   </div>
 
