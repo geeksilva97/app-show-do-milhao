@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionsService } from 'src/app/services/questions.service';
-import { Question } from 'src/app/dto/question.dto';
 import { LoadingController } from '@ionic/angular';
-import { Observable, of } from 'rxjs';
+import { Question, QuestionAnswer } from 'src/app/models/question';
 
 @Component({
   selector: 'app-question',
@@ -11,76 +9,53 @@ import { Observable, of } from 'rxjs';
 })
 export class QuestionPage implements OnInit {
 
-  question: Question;
-  timer: number = 30;
-  offset: number = 1000;
+  questions: Question[] = [
 
-  mapLiteral = {
-    1000: 'MIL REAIS',
-    2000: 'DOIS MIL REAIS',
-    1000000: 'UM MILHÃO DE REAIS'
-  };
+    {
+      title: 'Pergunta 1',
+      answers: [
+        {description: 'Resposta 1 P1', isRight: false},
+        {description: 'Resposta 2 P1', isRight: true},
+        {description: 'Resposta 3 P1', isRight: false},
+        {description: 'Resposta 4 P1', isRight: false},
+      ]
+    },
 
-  metadata = {
-    currentQuestion: 0,
-    questionPrize: 1000,
-    amount: 0,
-  };
+    {
+      title: 'Pergunta 2',
+      answers: [
+        {description: 'Resposta 1 P2', isRight: true},
+        {description: 'Resposta 2 P2', isRight: false},
+        {description: 'Resposta 3 P2', isRight: false},
+        {description: 'Resposta 4 P2', isRight: false},
+      ]
+    },
 
-  constructor(
-    private questionService: QuestionsService,
-    private loadingCtrl: LoadingController
-  ) { }
+    {
+      title: 'Pergunta 3',
+      answers: [
+        {description: 'Resposta 1 P3', isRight: false},
+        {description: 'Resposta 2 P3', isRight: false},
+        {description: 'Resposta 3 P3', isRight: false},
+        {description: 'Resposta 4 P3', isRight: true},
+      ]
+    }
 
-  ngOnInit() {
-    this.question = this.questionService.questions[0];
+  ];
 
-    const intervalID = setInterval(() => {
-      if(this.timer === 0) return clearInterval(intervalID);
-      this.timer--;
-    }, 1000);
+  curQuesion: Question;
+  questionIndex: number = 0;
+  
+
+  ngOnInit(): void {
+    this.curQuesion = this.questions[this.questionIndex];
   }
 
-  async answerQuestion(answer: {text: string, right: boolean}) {
 
-
-    if(answer.right) {
-
-      if(this.metadata.currentQuestion === 15) {
-        alert('Pergunta final');
-        return;
-      }
-
-      const alertMessage = await this.loadingCtrl.create({
-        message: 'Carregando...',
-      });
-      alertMessage.present();
-      this.metadata.currentQuestion++;
-
-      // acumulado é igual ao valor se acertar
-      this.metadata.amount = this.metadata.questionPrize;
-
-      // o valor de acerto muda (geralmente duas vezes)
-      if(this.metadata.currentQuestion == 5) {
-        this.metadata.questionPrize = 10000;
-        this.offset = 10000;
-      }else if(this.metadata.currentQuestion == 10) {
-        this.metadata.questionPrize = 100000;
-        this.offset = 100000;
-      } else if(this.metadata.currentQuestion == 15) {
-        this.metadata.questionPrize = 1000000;
-        this.offset = 0;
-      }
-      else this.metadata.questionPrize += this.offset;
-
-
-      this.question = this.questionService.questions[this.metadata.currentQuestion];
-      alertMessage.dismiss();
-      this.timer = 30;
-      // setTimeout(() => {
-      //   alertMessage.dismiss();
-      //   this.timer = 30;
-      // }, 2000);
+  doAnswer(answer: QuestionAnswer) {
+    if(answer.isRight) {
+      this.questionIndex++;
+      this.curQuesion = this.questions[this.questionIndex];
     }
   }
 
