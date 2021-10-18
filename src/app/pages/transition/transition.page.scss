@@ -1,0 +1,23 @@
+
+ion-content{
+  --background: linear-gradient(#01406b, #022c5e);
+  h1,h4 {
+    margin: 0;
+    color: #fff;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15vh;
+
+    figure {
+      text-align: center;
+      .icon {
+        width: 50%;
+      }
+    }
+  }
+}
