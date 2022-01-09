@@ -20,6 +20,10 @@ export class QuestionPage implements OnInit {
     private modalCtrl: ModalController
   ){}
 
+  ngOnInit(): void {
+    this.loadQuestion();
+  }
+
   private loadQuestion() {
     this.curQuesion = this.questionService.nextQuestion();
     this.prizeInfo = this.questionService.getPrizeInfo();
@@ -38,13 +42,7 @@ export class QuestionPage implements OnInit {
 
     await transitionModal.present();
     if (time) setTimeout(() => transitionModal.dismiss(), time);
-    await transitionModal.onDidDismiss();
   }
-
-  ngOnInit(): void {
-    this.loadQuestion();
-  }
-
 
   async doAnswer(answer: QuestionAnswer) {
     if(answer.isRight) {
