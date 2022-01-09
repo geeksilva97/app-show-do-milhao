@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'question',
     loadChildren: () => import('./pages/question/question.module').then( m => m.QuestionPageModule)
   },
+  
+  {
+    path: 'transition',
+    loadChildren: () => import('./pages/transition/transition.module').then( m => m.TransitionPageModule)
+  },
 ];
 
 @NgModule({
