@@ -4,7 +4,7 @@
     <div class="question">
       <p>{{ curQuesion.title }}</p>
       <div>
-        <div class="time">30</div>
+        <div class="time">{{ timeLeft }}</div>
       </div>
     </div>
   </div>
@@ -17,15 +17,15 @@
   </div>
 
   <div class="info" *ngIf="prizeInfo">
-    <div class="yellow-button">
+    <div class="yellow-button" role="button">
       <p>ERRAR</p>
       <p>{{ prizeInfo.wrongAnswer }}</p>
     </div>
-    <div class="yellow-button">
+    <div class="yellow-button" role="button" (click)="giveUp()">
       <p>PARAR</p>
       <p>{{ prizeInfo.quit }}</p>
     </div>
-    <div class="yellow-button">
+    <div class="yellow-button" role="button">
       <p>ACERTAR</p>
       <p>{{ prizeInfo.correctAnswer }}</p>
     </div>

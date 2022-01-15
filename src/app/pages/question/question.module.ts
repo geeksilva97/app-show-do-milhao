@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { QuestionPageRoutingModule } from './question-routing.module';
 
 import { QuestionPage } from './question.page';
+import { EndingPageModule } from '../ending/ending.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    QuestionPageRoutingModule
+    QuestionPageRoutingModule,
+    EndingPageModule
   ],
   declarations: [QuestionPage]
 })
